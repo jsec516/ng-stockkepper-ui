@@ -1,0 +1,36 @@
+<a routerLink="/purchase/new" class="ui primary button">
+  Add New
+</a>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Receive Ticket Number</th>
+      <th>Location</th>
+      <th>PO Number</th>
+      <th>Product Name</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of purchases">
+      <td>{{p.rtn}}</td>
+      <td>{{p.location}}</td>
+      <td>{{p.po_number}}</td>
+      <td>{{p.product}}</td>
+      <td>{{p.quantity}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+    <div class="header">Example</div>
+    <div class="content">
+        <p>{{ context.data }}</p>
+    </div>
+    <div class="actions">
+        <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+        <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+    </div>
+</ng-template>

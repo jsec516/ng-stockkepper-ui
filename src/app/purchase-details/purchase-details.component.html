@@ -1,0 +1,25 @@
+<form #pdForm="ngForm" (ngSubmit)="saveDetails()" class="ui form">
+  <div class="field">
+    <label>Receive Ticket Number</label>
+    <input [(ngModel)]="model.rtn" name="rtn" type="text" required>
+  </div>
+  <div class="field">
+    <label>Location</label>
+    <input [(ngModel)]="model.location" name="location" type="text" required>
+  </div>
+  <div class="field">
+    <label>PO Number</label>
+    <input [(ngModel)]="model.po_number" name="po_number" type="text" required>
+  </div>
+  <div class="field">
+    <label>Product Name</label>
+    <select [(ngModel)]="model.product" name="product" class="ui fluid dropdown" required>
+      <option value="1">Test</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Quantity</label>
+    <input [(ngModel)]="model.quantity" name="quantity" type="text" required>
+  </div>
+  <button class="ui button" [disabled]="!pdForm.form.valid" type="submit">Save</button>
+</form>
