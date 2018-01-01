@@ -5,19 +5,15 @@
   <thead>
     <tr>
       <th>Receive Ticket Number</th>
-      <th>Location</th>
       <th>PO Number</th>
-      <th>Product Name</th>
-      <th>Quantity</th>
+      <th>Products</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let p of purchases">
       <td>{{p.rtn}}</td>
-      <td>{{p.location}}</td>
-      <td>{{p.po_number}}</td>
-      <td>{{p.product}}</td>
-      <td>{{p.quantity}}</td>
+      <td>{{p.pon}}</td>
+      <td><a routerLink="/purchase-details/{{p.id}}">{{p.products.length}}</a></td>
     </tr>
   </tbody>
   <tfoot>

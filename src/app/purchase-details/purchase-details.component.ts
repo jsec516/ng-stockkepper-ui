@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Purchase } from '../models/purchase';
 
 @Component({
@@ -8,9 +9,23 @@ import { Purchase } from '../models/purchase';
 })
 export class PurchaseDetailsComponent implements OnInit {
 
-  model: Purchase;
-  constructor() {
-    this.model = new Purchase();
+  model: any;
+  constructor(private route: ActivatedRoute) {
+    this.model = {
+      rtn: '',
+      pon: '',
+      note: '',
+      products: [new Purchase()],
+      rawProducts: [
+        {id: 5, name: 'AAA'},
+        {id: 6, name: 'BBB'}
+      ]
+    };
+  }
+
+  newItem(e) {
+    this.model.products.push(new Purchase());
+    e.preventDefault();
   }
 
   saveDetails() {
@@ -18,6 +33,12 @@ export class PurchaseDetailsComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.getPurchaseDetail();
+  }
+
+  getPurchaseDetail() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log('purchase details for ', id);
   }
 
 }

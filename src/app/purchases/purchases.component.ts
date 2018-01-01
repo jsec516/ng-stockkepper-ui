@@ -17,18 +17,24 @@ export class PurchasesComponent implements OnInit {
     {
       id: 1,
       rtn: 'rtn-1',
-      location: 'Maiden',
-      product: 'DCS-7010T-48-R',
-      quantity: 20,
-      po_number: '6000094322'
+      pon: '6000094322',
+      products: [
+        {
+          location: 'Maiden',
+          product: 'DCS-7010T-48-R',
+        quantity: 20
+      }]
     },
     {
       id: 2,
       rtn: 'rtn-2',
-      product: 'DCS-7010T-48-R',
-      location: 'Maiden',
-      quantity: 20,
-      po_number: '6000094322'
+      pon: '6000094322',
+      products: [
+        {
+          location: 'Maiden',
+          product: 'DCS-7010T-48-R',
+        quantity: 20
+      }]
     }
   ];
   showDetail = false;

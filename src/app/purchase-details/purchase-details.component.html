@@ -1,25 +1,32 @@
 <form #pdForm="ngForm" (ngSubmit)="saveDetails()" class="ui form">
   <div class="field">
     <label>Receive Ticket Number</label>
-    <input [(ngModel)]="model.rtn" name="rtn" type="text" required>
-  </div>
-  <div class="field">
-    <label>Location</label>
-    <input [(ngModel)]="model.location" name="location" type="text" required>
+    <input [(ngModel)]="model.rtn" name="rtn" type="text" placeholder="Receive Ticket Number" required>
   </div>
   <div class="field">
     <label>PO Number</label>
-    <input [(ngModel)]="model.po_number" name="po_number" type="text" required>
+    <input type="text" [(ngModel)]="model.pon" name="po_number" placeholder="PO Number">
   </div>
   <div class="field">
-    <label>Product Name</label>
-    <select [(ngModel)]="model.product" name="product" class="ui fluid dropdown" required>
-      <option value="1">Test</option>
-    </select>
+      <label>Note</label>
+      <input type="text" [(ngModel)]="model.note" name="note" placeholder="Note">
+    </div>
+  <h4 class="ui dividing header">Purchase Item</h4>
+  <div class="fields" *ngFor="let item of model.products; index as i;">
+    <div class="five wide field">
+      <sui-select class="selection" [name]="'product' + i" [(ngModel)]="item.product" [options]="model.rawProducts" valueField="id" labelField="name" [isSearchable]="true"
+        [isDisabled]="false" #select>
+        <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+        </sui-select-option>
+      </sui-select>
+    </div>
+    <div class="four wide field">
+      <input type="text" [(ngModel)]="item.location" [name]="'location' + i" placeholder="Location">
+    </div>
+    <div class="three wide field">
+      <input type="text" [(ngModel)]="item.quantity" [name]="'quantity' + i" placeholder="Quantity">
+    </div>
   </div>
-  <div class="field">
-    <label>Quantity</label>
-    <input [(ngModel)]="model.quantity" name="quantity" type="text" required>
-  </div>
-  <button class="ui button" [disabled]="!pdForm.form.valid" type="submit">Save</button>
+  <button (click)="newItem($event)" class="ui button">Add New Item</button>
+  <button class="ui button primary" [disabled]="!pdForm.form.valid" type="submit">Save</button>
 </form>
