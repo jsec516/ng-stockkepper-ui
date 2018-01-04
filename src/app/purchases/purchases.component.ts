@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
 import { Purchase } from '../models/purchase';
+import { PurchaseService } from '../services/purchase.service';
 
 export interface IContext {
     data:any;
@@ -46,9 +47,15 @@ export class PurchasesComponent implements OnInit {
     console.log(this.selectedPurchase);
   }
   
-  constructor() { }
+  constructor(
+    private purchaseService: PurchaseService
+  ) { }
 
   ngOnInit() {
+    this.purchaseService.getAll()
+    .subscribe((data: Array<any>) => {
+      this.purchases = data;
+    });
   }
 
 }

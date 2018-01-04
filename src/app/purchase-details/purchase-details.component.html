@@ -9,12 +9,12 @@
   </div>
   <div class="field">
       <label>Note</label>
-      <input type="text" [(ngModel)]="model.note" name="note" placeholder="Note">
+      <input type="text" [(ngModel)]="model.notes" name="note" placeholder="Note">
     </div>
   <h4 class="ui dividing header">Purchase Item</h4>
   <div class="fields" *ngFor="let item of model.products; index as i;">
     <div class="five wide field">
-      <sui-select class="selection" [name]="'product' + i" [(ngModel)]="item.product" [options]="model.rawProducts" valueField="id" labelField="name" [isSearchable]="true"
+      <sui-select class="selection" [name]="'product' + i" [(ngModel)]="item.product" [options]="rawProducts" valueField="id" labelField="name" [isSearchable]="true"
         [isDisabled]="false" #select>
         <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
         </sui-select-option>
@@ -24,7 +24,7 @@
       <input type="text" [(ngModel)]="item.location" [name]="'location' + i" placeholder="Location">
     </div>
     <div class="three wide field">
-      <input type="text" [(ngModel)]="item.quantity" [name]="'quantity' + i" placeholder="Quantity">
+      <input type="text" [(ngModel)]="item.original_quantity" [name]="'quantity' + i" placeholder="Quantity">
     </div>
   </div>
   <button (click)="newItem($event)" class="ui button">Add New Item</button>

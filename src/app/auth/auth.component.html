@@ -1,0 +1,11 @@
+<form #authForm="ngForm" (ngSubmit)="login()"class="ui form">
+  <div class="field">
+    <label>Username</label>
+    <input type="text" [(ngModel)]="model.username" name="username" placeholder="username">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" [(ngModel)]="model.password" name="password" placeholder="password">
+  </div>
+  <button class="ui button primary" type="submit">Submit</button>
+</form>

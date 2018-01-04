@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Purchase } from '../models/purchase';
+import { PurchaseItem } from '../models/purchase-item';
+import { PurchaseService } from '../services/purchase.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-purchase-details',
@@ -10,35 +13,61 @@ import { Purchase } from '../models/purchase';
 export class PurchaseDetailsComponent implements OnInit {
 
   model: any;
-  constructor(private route: ActivatedRoute) {
+  rawProducts: any;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private purchaseService: PurchaseService,
+    private productService: ProductService
+  ) {
     this.model = {
       rtn: '',
       pon: '',
-      note: '',
-      products: [new Purchase()],
-      rawProducts: [
-        {id: 5, name: 'AAA'},
-        {id: 6, name: 'BBB'}
-      ]
+      notes: '',
+      products: [new PurchaseItem()]
     };
+
+    this.rawProducts = [];
   }
 
   newItem(e) {
-    this.model.products.push(new Purchase());
+    this.model.products.push(new PurchaseItem());
     e.preventDefault();
   }
 
   saveDetails() {
-    console.log(this.model);
+    (
+      this.model.id ? 
+      this.purchaseService.update(this.model) : 
+      this.purchaseService.create(this.model)
+    )
+    .subscribe(response => {
+      this.router.navigateByUrl('/purchases');
+    });
   }
   
   ngOnInit() {
     this.getPurchaseDetail();
+    this.getProducts()
+    .subscribe(response => {
+      this.rawProducts = response;
+    });
+  }
+
+  private getProducts() {
+    return this.productService.getAll()
   }
 
   getPurchaseDetail() {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log('purchase details for ', id);
+    if (!id) {
+      return;
+    }
+    this.purchaseService.read(id)
+    .subscribe(response => {
+      this.model = response;
+    })
+    // console.log('purchase details for ', id);
   }
 
 }
