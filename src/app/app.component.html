@@ -1,7 +1,33 @@
-<div class="ui three item menu">
-    <a class="active item" routerLink="/dashboard">Dashboard</a>
-    <a class="item" routerLink="/purchases">Purchases</a>
-    <a class="item" routerLink="/requests">Requests</a>
+<div class="ui grid">
+    <div class="sixteen wide column">
+        <div class="ui secondary  menu">
+            <span class="item">
+                Stock Keeper
+            </span>
+            <div class="right menu">
+                <a class="ui item">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="authService.loggedIn.getValue()" class="four wide column">
+        <div class="ui secondary vertical menu">
+            <a routerLink="/dashboard" class="active item">
+                Dashboard {{authService.loggedIn.getValue()}}
+            </a>
+            <a routerLink="/products" class="item">
+                Products
+            </a>
+            <a routerLink="/purchases" class="item">
+                Purchases
+            </a>
+            <a routerLink="/requests" class="item">
+                Requests
+            </a>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-<router-outlet></router-outlet>
-<!-- <app-purchases></app-purchases> -->

@@ -30,4 +30,9 @@ export class HttpService {
     put(uri: string, body?: any) {
         return this.http.put(this.endpoint + uri, body, httpOptions);
     }
+
+    delete(uri: string) {
+        return this.http.delete(this.endpoint + uri, httpOptions);
+    }
+
 }

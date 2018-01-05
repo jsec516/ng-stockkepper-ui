@@ -24,7 +24,8 @@ export class PurchaseDetailsComponent implements OnInit {
       rtn: '',
       pon: '',
       notes: '',
-      products: [new PurchaseItem()]
+      products: [new PurchaseItem()],
+      garbageItems: []
     };
 
     this.rawProducts = [];
@@ -36,6 +37,7 @@ export class PurchaseDetailsComponent implements OnInit {
   }
 
   saveDetails() {
+    console.log('firing with ', this.model);
     (
       this.model.id ? 
       this.purchaseService.update(this.model) : 
@@ -56,6 +58,16 @@ export class PurchaseDetailsComponent implements OnInit {
 
   private getProducts() {
     return this.productService.getAll()
+  }
+
+  removeItem(e, index) {
+    e.preventDefault();
+    let removedItem = this.model.products.splice(index, 1);
+    if(!this.model.garbageItems) {
+      this.model.garbageItems = [];
+    }
+    console.log('state is ', this.model);
+    this.model.garbageItems = this.model.garbageItems.concat(removedItem);
   }
 
   getPurchaseDetail() {

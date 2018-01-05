@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 import 'rxjs/add/operator/switchMap';
 import { HttpService } from './http.service';
 
@@ -24,7 +25,22 @@ export class PurchaseService {
 
     update(model) {
         console.log('update has been called');
-        return this.http.put('/api/v1/webapp/purchases/'+model.id+'/', model);
+        let garbageOps = [];
+        let garbages = model.garbageItems;
+        if (garbages && garbages.length) {
+            garbages.forEach((item) => {
+                garbageOps.push(this.remove(model.id, item.id));
+            });
+        } else {
+            garbageOps.push(of(true));
+        }
+
+        // delete model.garbageItems;
+
+        return forkJoin(...garbageOps)
+        .switchMap(results => {
+            return this.http.put('/api/v1/webapp/purchases/'+model.id+'/', model);
+        });
         // return of(model);
     }
 
@@ -34,6 +50,10 @@ export class PurchaseService {
 
     read(id: number) {
         return this.http.get('/api/v1/webapp/purchases/'+id+'/');
+    }
+
+    remove(purchaseId: number, itemId: number) {
+        return this.http.delete('/api/v1/webapp/purchases/'+purchaseId+'/items/' + itemId + '/');
     }
 
 }

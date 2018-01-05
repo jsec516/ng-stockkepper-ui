@@ -26,6 +26,9 @@
     <div class="three wide field">
       <input type="text" [(ngModel)]="item.original_quantity" [name]="'quantity' + i" placeholder="Quantity">
     </div>
+    <div class="one wide field">
+      <a (click)="removeItem($event, i)" href="#">remove</a>
+    </div>
   </div>
   <button (click)="newItem($event)" class="ui button">Add New Item</button>
   <button class="ui button primary" [disabled]="!pdForm.form.valid" type="submit">Save</button>
