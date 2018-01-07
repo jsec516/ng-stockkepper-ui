@@ -1,0 +1,7 @@
+<form #pForm="ngForm" (ngSubmit)="saveDetails()" class="ui form">
+  <div class="field">
+    <label>Name</label>
+    <input [(ngModel)]="model.name" name="name" type="text" placeholder="Product Name" required>
+  </div>
+  <button class="ui button primary" [disabled]="!pForm.form.valid" type="submit">Save</button>
+</form>

@@ -12,18 +12,27 @@ export class ProductService {
     }
 
     create(model) {
-        // let purchase = {
-        //     rtn: model.rtn,
-        //     pon: model.pon,
-        //     notes: model.note,
-        //     products: model.products
-        // };
+        let product = {
+            name: model.name
+        };
 
-        // return this.http.post('/api/v1/webapp/purchases', purchase);
+        return this.http.post('/api/v1/webapp/products', product);
+    }
+
+    update(model) {
+        return this.http.put('/api/v1/webapp/products/'+model.id+'/', model);
     }
 
     getAll() {
         return this.http.get('/api/v1/webapp/products');
+    }
+
+    read(id: number) {
+        return this.http.get('/api/v1/webapp/products/'+id+'/');
+    }
+
+    remove(id: number) {
+        return this.http.delete('/api/v1/webapp/products/'+ id + '/');
     }
 
 }

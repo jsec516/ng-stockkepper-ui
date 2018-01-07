@@ -1,0 +1,19 @@
+<a routerLink="/product/new" class="ui primary button">
+  Add New
+</a>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{p.name}}</td>
+      <td><a routerLink="/product-details/{{p.id}}">Edit</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>

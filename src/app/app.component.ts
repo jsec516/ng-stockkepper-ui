@@ -17,11 +17,9 @@ export class AppComponent {
   }
 
   logout(e) {
-    console.log("I am called for logout");
     e.preventDefault();
     this.authService.logout()
     .subscribe(item => {
-      console.log('item returned ', item);
       this.router.navigateByUrl('/login');
     })
   }
