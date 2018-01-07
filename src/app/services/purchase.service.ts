@@ -24,17 +24,22 @@ export class PurchaseService {
     }
 
     update(model) {
-        console.log('update has been called');
+        // console.log('update has been called');
         let garbageOps = [];
         let garbages = model.garbageItems;
         if (garbages && garbages.length) {
             garbages.forEach((item) => {
-                garbageOps.push(this.remove(model.id, item.id));
+                if (model.id && item.id) {
+                    garbageOps.push(this.remove(model.id, item.id));
+                }
             });
         } else {
             garbageOps.push(of(true));
         }
 
+        if (!garbageOps.length) {
+            garbageOps.push(of(true));
+        }
         // delete model.garbageItems;
 
         return forkJoin(...garbageOps)

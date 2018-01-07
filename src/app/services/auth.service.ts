@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   logout() {
-
+    return this.removeToken();
   }
 
   private getToken(username: string, password: string) {
@@ -55,7 +55,8 @@ export class AuthService {
   }
 
   removeToken() {
-
+    localStorage.removeItem('stocktoken');
+    return of(true);
   }
 
 }
