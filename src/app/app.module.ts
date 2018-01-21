@@ -14,9 +14,12 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './services/auth.service';
 import { PurchaseService } from './services/purchase.service';
 import { ProductService } from './services/product.service';
+import { RequestService } from './services/request.service';
 import { HttpService } from './services/http.service';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { RequestDetailsComponent } from './request-details/request-details.component';
+import { AllocationDetailsComponent } from './allocation-details/allocation-details.component';
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     RequestsComponent,
     AuthComponent,
     ProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    RequestDetailsComponent,
+    AllocationDetailsComponent
   ],
   imports: [
     FormsModule,
@@ -37,7 +42,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthService, HttpService, PurchaseService, ProductService],
+  providers: [AuthService, HttpService, PurchaseService, ProductService, RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

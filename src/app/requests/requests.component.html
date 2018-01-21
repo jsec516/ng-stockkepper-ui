@@ -1,3 +1,25 @@
-<p>
-  requests works!
-</p>
+<a routerLink="/request/new" class="ui primary button">
+  Add New
+</a>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Notes</th>
+      <th>No. of Items</th>
+      <th>No. of Allocation</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of requests">
+      <td>{{r.notes}}</td>
+      <td>{{r.items.length}}</td>
+      <td><a>{{r.allocations.length}}</a></td>
+      <td>
+          <a routerLink="/request-details/{{r.id}}">request details</a> | 
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>

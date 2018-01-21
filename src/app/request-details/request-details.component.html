@@ -1,0 +1,31 @@
+<form #pdForm="ngForm" (ngSubmit)="saveDetails()" class="ui form">
+  <h4 class="ui dividing header">Request Item</h4>
+  <div class="fields" *ngFor="let item of model.items; index as i;">
+    <div class="one wide field">
+      <label>{{item.id}}</label>
+    </div>
+    <div class="four wide field">
+      <input type="text" [(ngModel)]="item.project_id" [name]="'project' + i" placeholder="Project ID">
+    </div>
+    <div class="five wide field">
+      <sui-select class="selection" [name]="'product' + i" [(ngModel)]="item.product" [options]="rawProducts" valueField="id" labelField="name"
+        [isSearchable]="true" [isDisabled]="false" #select>
+        <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+        </sui-select-option>
+      </sui-select>
+    </div>
+    <div class="three wide field">
+      <input type="text" [(ngModel)]="item.quantity" [name]="'quantity' + i" placeholder="Quantity">
+    </div>
+    <div class="one wide field">
+      <a (click)="removeItem($event, i)" href="#">remove</a>
+    </div>
+  </div>
+  <button (click)="newItem($event)" class="ui button">Add New Item</button>
+  <h4 class="ui dividing header">Additional Fields</h4>
+  <div class="field">
+    <label>Note</label>
+    <input [(ngModel)]="model.notes" name="note" type="text" placeholder="Note">
+  </div>
+  <button class="ui button primary" [disabled]="!pdForm.form.valid" type="submit">Save</button>
+</form>

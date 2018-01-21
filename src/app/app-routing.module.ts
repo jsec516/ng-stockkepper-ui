@@ -7,6 +7,8 @@ import { DashboardComponent }   from './dashboard/dashboard.component';
 import { ProductsComponent }      from './products/products.component';
 import { ProductDetailsComponent }      from './product-details/product-details.component';
 import { RequestsComponent }      from './requests/requests.component';
+import { RequestDetailsComponent }      from './request-details/request-details.component';
+import { AllocationDetailsComponent }      from './allocation-details/allocation-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -17,6 +19,9 @@ const routes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'purchases', component: PurchasesComponent },
   { path: 'requests', component: RequestsComponent },
+  { path: 'request/new', component: RequestDetailsComponent },
+  { path: 'request-details/:id', component: RequestDetailsComponent },
+  { path: 'request/:reqId/allocation', component: AllocationDetailsComponent },
   { path: 'purchase/new', component: PurchaseDetailsComponent },
   { path: 'purchase-details/:id', component: PurchaseDetailsComponent }
 ];
