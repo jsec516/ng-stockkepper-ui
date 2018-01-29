@@ -1,0 +1,26 @@
+<sui-modal [isClosable]="true" (dismissed)="onModalDismiss($event)" #modal>
+  <div class="header">Allocated Items</div>
+  <div class="content">
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Request No.</th>
+          <th>Request Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of model.allocations">
+          <td>Req No. {{p.request}}
+            <!-- <a routerLink="/request-details/{{p.request}}">{{p.request}}</a> -->
+          </td>
+          <td>{{p.quantity}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+  </div>
+  <div class="actions">
+    <button class="ui green button" (click)="modal.deny()" autofocus>Close</button>
+  </div>
+</sui-modal>

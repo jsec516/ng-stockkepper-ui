@@ -53,8 +53,16 @@ export class PurchaseService {
         return this.http.get('/api/v1/webapp/purchases');
     }
 
+    getAllPurchasedItem() {
+        return this.http.get('/api/v1/webapp/purchase-items/');
+    }
+
     read(id: number) {
         return this.http.get('/api/v1/webapp/purchases/'+id+'/');
+    }
+
+    readItemListFor(productId: number) {
+        return this.http.get('/api/v1/webapp/purchases-for/'+productId+'/');
     }
 
     remove(purchaseId: number, itemId: number) {

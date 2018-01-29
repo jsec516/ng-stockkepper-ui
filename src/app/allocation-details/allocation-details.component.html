@@ -1,26 +1,28 @@
-<form #pdForm="ngForm" (ngSubmit)="saveDetails()" class="ui form">
-  <h4 class="ui dividing header">Allocated Items</h4>
-  <div class="fields" *ngFor="let item of model.allocations; index as i;">
-    <div class="five wide field">
-      <sui-select class="selection" [name]="'allocate_product' + i" [(ngModel)]="item.product" [options]="model.items" valueField="id"
-        labelField="name" [isSearchable]="true" [isDisabled]="false" #select>
-        <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
-        </sui-select-option>
-      </sui-select>
-    </div>
-    <div class="five wide field">
-      <sui-select class="selection" [name]="'allocate_purchase' + i" [(ngModel)]="item.purchase" [options]="rawPurchases[item.product]"
-        valueField="id" labelField="name" [isSearchable]="true" [isDisabled]="false" #select>
-        <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
-        </sui-select-option>
-      </sui-select>
-    </div>
-    <div class="three wide field">
-      <input type="text" [(ngModel)]="item.quantity" [name]="'allocate_quantity' + i" placeholder="Quantity">
-    </div>
-    <div class="one wide field">
-      <a (click)="removeAllocItem($event, i)" href="#">remove</a>
-    </div>
+<sui-modal [isClosable]="true" (dismissed)="onModalDismiss($event)" #modal>
+  <div class="header">Allocate {{model.requestedItem.quantity}} Items</div>
+  <div class="content">
+    <form #pdForm="ngForm" (ngSubmit)="saveDetails()" class="ui form">
+      <h4 class="ui dividing header">Allocated Items</h4>
+      <div class="fields" *ngFor="let item of model.allocations; index as i;">
+        <div class="five wide field">
+          <sui-select class="selection" [name]="'allocate_purchase' + i" [(ngModel)]="item.purchase_item" [options]="model.rawPurchases"
+            valueField="id" labelField="purchase_pon" [isSearchable]="true" [isDisabled]="false" #select>
+            <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+            </sui-select-option>
+          </sui-select>
+        </div>
+        <div class="three wide field">
+          <input type="text" [(ngModel)]="item.quantity" [name]="'allocate_quantity' + i" placeholder="Quantity">
+        </div>
+        <div class="one wide field">
+          <a (click)="removeItem($event, i)" href="#">remove</a>
+        </div>
+      </div>
+      <button (click)="newItem($event)" class="ui button">Add New Item</button>
+    </form>
   </div>
-  <button (click)="newAllocItem($event)" class="ui button">Add New Item</button>
-</form>
+  <div class="actions">
+    <button class="ui red button" (click)="modal.deny()">Cancel</button>
+    <button class="ui green button" (click)="onSave(modal)" autofocus>Save</button>
+  </div>
+</sui-modal>

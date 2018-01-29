@@ -55,6 +55,10 @@ export class RequestService {
         return this.http.get('/api/v1/webapp/requests/'+id+'/');
     }
 
+    readItem(reqId: number, reqItemId: number) {
+        return this.http.get('/api/v1/webapp/requests/'+reqId+'/items/'+reqItemId + '/');
+    }
+
     remove(purchaseId: number, itemId: number) {
         return this.http.delete('/api/v1/webapp/requests/'+purchaseId+'/items/' + itemId + '/');
     }

@@ -33,10 +33,6 @@ export class RequestDetailsComponent implements OnInit {
     this.model.items = [...this.model.items, new RequestItem()];
   }
 
-  newAllocItem(e) {
-    e.preventDefault();
-    this.model.allocations = [...this.model.allocations, new AllocatedItem()];
-  }
 
   removeItem(e, index) {
     e.preventDefault();

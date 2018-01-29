@@ -18,6 +18,7 @@
       <input type="text" [(ngModel)]="item.quantity" [name]="'quantity' + i" placeholder="Quantity">
     </div>
     <div class="one wide field">
+        <a routerLink="/request/{{model.id}}/item/{{item.id}}/allocation">allocate</a> | 
       <a (click)="removeItem($event, i)" href="#">remove</a>
     </div>
   </div>

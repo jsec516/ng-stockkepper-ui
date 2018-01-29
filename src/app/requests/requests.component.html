@@ -6,7 +6,6 @@
     <tr>
       <th>Notes</th>
       <th>No. of Items</th>
-      <th>No. of Allocation</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -14,9 +13,8 @@
     <tr *ngFor="let r of requests">
       <td>{{r.notes}}</td>
       <td>{{r.items.length}}</td>
-      <td><a>{{r.allocations.length}}</a></td>
       <td>
-          <a routerLink="/request-details/{{r.id}}">request details</a> | 
+          <a routerLink="/request-details/{{r.id}}">view</a>
       </td>
     </tr>
   </tbody>

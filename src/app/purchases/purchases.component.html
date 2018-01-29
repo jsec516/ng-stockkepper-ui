@@ -6,27 +6,18 @@
     <tr>
       <th>Receive Ticket Number</th>
       <th>PO Number</th>
-      <th>Products</th>
+      <th>No. of Products</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let p of purchases">
       <td>{{p.rtn}}</td>
       <td>{{p.pon}}</td>
-      <td><a routerLink="/purchase-details/{{p.id}}">{{p.products.length}}</a></td>
+      <td>{{p.products.length}}</td>
+      <td><a routerLink="/purchase-details/{{p.id}}">view</a></td>
     </tr>
   </tbody>
   <tfoot>
   </tfoot>
 </table>
-
-<ng-template let-context let-modal="modal" #modalTemplate>
-    <div class="header">Example</div>
-    <div class="content">
-        <p>{{ context.data }}</p>
-    </div>
-    <div class="actions">
-        <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
-        <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
-    </div>
-</ng-template>

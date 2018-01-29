@@ -13,16 +13,16 @@
     </div>
     <div *ngIf="authService.loggedIn.getValue()" class="four wide column">
         <div class="ui secondary vertical menu">
-            <a routerLink="/dashboard" class="active item">
+            <a routerLink="/dashboard" class="item" [ngClass]="(activatedMenu == 'dashboard') ? 'active': ''">
                 Dashboard
             </a>
-            <a routerLink="/products" class="item">
+            <a routerLink="/products" class="item" [ngClass]="(activatedMenu == 'products') ? 'active': ''">
                 Products
             </a>
-            <a routerLink="/purchases" class="item">
+            <a routerLink="/purchases" class="item" [ngClass]="(activatedMenu == 'purchases') ? 'active': ''">
                 Purchases
             </a>
-            <a routerLink="/requests" class="item">
+            <a routerLink="/requests" class="item" [ngClass]="(activatedMenu == 'requests') ? 'active': ''">
                 Requests
             </a>
         </div>

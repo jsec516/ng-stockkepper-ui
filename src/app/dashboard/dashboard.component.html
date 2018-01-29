@@ -1,0 +1,52 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>PO Number</th>
+      <th>Product</th>
+      <th>Ordered Quantity</th>
+      <th>Available Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of model.purchaseItems">
+      <td>{{p.purchase_pon}}</td>
+      <td>{{p.product_name}}</td>
+      <td>{{p.original_quantity}}</td>
+      <td>{{p.available_quantity}}</td>
+      <td>
+        <!-- <a routerLink="/purchase-allocation-details/{{p.purchase}}/{{p.product}}">allocations</a> |  -->
+        <a href="#" (click)="openDialog($event, p)">allocations</a>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">Example</div>
+  <div class="content">
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Request No.</th>
+          <th>Request Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of context.data">
+          <td>Req No. {{p.request}}
+            <!-- <a routerLink="/request-details/{{p.request}}">{{p.request}}</a> -->
+          </td>
+          <td>{{p.quantity}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+  </div>
+  <div class="actions">
+    <button class="ui green button" (click)="modal.approve('approved')" autofocus>Close</button>
+  </div>
+</ng-template>

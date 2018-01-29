@@ -9,6 +9,7 @@ import { ProductDetailsComponent }      from './product-details/product-details.
 import { RequestsComponent }      from './requests/requests.component';
 import { RequestDetailsComponent }      from './request-details/request-details.component';
 import { AllocationDetailsComponent }      from './allocation-details/allocation-details.component';
+import { PurchaseAllocationDetailsComponent }      from './purchase-allocation-details/purchase-allocation-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'requests', component: RequestsComponent },
   { path: 'request/new', component: RequestDetailsComponent },
   { path: 'request-details/:id', component: RequestDetailsComponent },
-  { path: 'request/:reqId/allocation', component: AllocationDetailsComponent },
+  { path: 'request/:reqId/item/:reqItemId/allocation', component: AllocationDetailsComponent },
+  { path: 'purchase-allocation-details/:purchaseId/:productId', component: PurchaseAllocationDetailsComponent },
   { path: 'purchase/new', component: PurchaseDetailsComponent },
   { path: 'purchase-details/:id', component: PurchaseDetailsComponent }
 ];
